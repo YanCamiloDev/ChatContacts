@@ -20,7 +20,7 @@ class Cadastro
    * @param Array $data
    * @return void
    */
-  public function cadastro($data)
+  public function view($data)
   {
     require $this->dir.'cadastro.php';
   }

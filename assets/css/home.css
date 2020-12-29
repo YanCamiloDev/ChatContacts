@@ -5,6 +5,20 @@
   flex-direction: column;
 }
 
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+
+#foto {
+  width: 40px;
+  height: 40px;
+}
+
+
 header {
   display: flex;
   background: rgb(2,0,36);
@@ -62,14 +76,3 @@ header nav ul li a:hover{
   text-decoration: none;
 }
 
-.details {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-#foto {
-  width: 40px;
-  height: 40px;
-}

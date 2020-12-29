@@ -1,5 +1,4 @@
-<?php require "src/global/links.php"; ?>
-
+<?php require_once "src/global/links.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +10,13 @@
 <body>
   <div class="container">
     <header>
-      <div class="details">
-        <img id="foto" src="<?php echo "storage/perfil/ ".$foto; ?>"/>
+      <div style="display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  height: 100%;" 
+            class="details">
+        <img style="width: 40px; border-radius: 30px; height: 40px;" 
+          id="foto" src="<?php echo "storage/perfil/ ".$foto; ?>"/>
         <h1>Home</h1>
       </div>
       <nav>
