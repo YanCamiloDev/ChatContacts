@@ -8,9 +8,9 @@ class UploadFoto{
 
   private $dir;
 
-  public function __construct()
+  public function __construct($pasta="\storage\perfil\ ")
   {
-    $this->dir = getcwd()."\storage\perfil\ ";
+    $this->dir = getcwd().$pasta;
   }
 
   /**

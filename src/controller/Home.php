@@ -1,5 +1,7 @@
 <?php
 namespace Source\controller;
+use Source\model\UsuarioModel;
+session_start();
 
 class Home
 {
@@ -12,8 +14,13 @@ class Home
   }
 
 
-  public function home($data)
+  public function view($data)
   {
+    $foto = '';
+    if (isset($_SESSION['login'])) {  
+      $usuario = new UsuarioModel();
+      $foto = $usuario->getFotoPerfil($_SESSION['login']);
+    }
     require $this->dir.'home.php';
   }
 

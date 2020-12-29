@@ -12,6 +12,7 @@
   width: 60%;
   background-color: #FFFFFF;
   display: flex;
+  transition: all 0.2s ease-in-out;
 }
 
 .container-main aside {
@@ -19,8 +20,30 @@
   width: 100%;
   display: flex;
   align-items: center;
-  flex-direction: column;
   justify-content: center;
+}
+
+.container-main aside .rounded {
+  width: 180;
+  height: 181;
+  background-color: #F3F3F3;
+  border-radius: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-main aside img {
+  width: 110px;
+  height: 75px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.container-main aside img:hover {
+  width: 121px;
+  height: 82.5px;
+  
 }
 
 .container-main aside:last-child > form{
@@ -34,7 +57,7 @@
   text-align: center;
 }
 
-#email, #senha { 
+#nome, #telefone { 
   width: 100%;
   outline: 0;
   border: none;
@@ -45,7 +68,7 @@
   font-size: 15px;
 }
 
-#btEntrar {
+#btCadastro{
   padding: 5px 15px;
   background-color: #72B255;
   color: #FFFFFF;
@@ -53,23 +76,11 @@
   border-radius: 40px;
   font-weight: 700;
   font-size: 15px;
+  margin-top: 20px;
   cursor: pointer;
-  margin-top: 20px;
   transition: all 0.2s ease-in-out;
 }
 
-#btEntrar:hover {
-  background-color: #345c22;
-}
-
-.container-main aside a {
-  
-  text-decoration: none;
-  color: #000000;
-  margin-top: 20px;
-  transition: all 0.2s ease-in-out;
-}
-
-.container-main aside a:hover {
-  color: #705cbb;
+#btCadastro:hover {
+  background-color: #325821;
 }

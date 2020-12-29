@@ -8,6 +8,11 @@
   <title>Login</title>
 </head>
 <body>
+  <?php if (isset($importante)): ?>
+    <div class="aviso">
+      <h4>Logue no Sistema</h4>
+    </div>
+  <?php endif; ?>
   <div class="container">
     <div class="container-main">
       <aside>

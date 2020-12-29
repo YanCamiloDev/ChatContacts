@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php require "src/global/links.php"; ?>
 
 <!DOCTYPE html>
@@ -12,7 +11,10 @@
 <body>
   <div class="container">
     <header>
-      <h1>Home</h1>
+      <div class="details">
+        <img id="foto" src="<?php echo "storage/perfil/ ".$foto; ?>"/>
+        <h1>Home</h1>
+      </div>
       <nav>
         <ul>
           <li><a href="login">Contatos</a></li>

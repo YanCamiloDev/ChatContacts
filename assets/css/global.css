@@ -1,0 +1,28 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Hind Siliguri', 'Arial';
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.aviso {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  align-self: center;
+  top: 0;
+  padding: 5px;
+  background-color: #ffffff;
+}
+.aviso h4 {
+  color: rgba(42, 131, 123, 0.733);
+}

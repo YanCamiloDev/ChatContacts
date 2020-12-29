@@ -50,7 +50,7 @@ class Login{
    * @return void
    */
 
-  public function login($data) {
+  public function view($data) {
     require $this->dir."login.php";
   }
 

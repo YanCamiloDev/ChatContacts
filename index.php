@@ -9,14 +9,18 @@ $router = new Router("http://localhost/projetos/Agenda");
 $router->namespace("Source\controller");
 $router->group(null);
 
-$router->get("/", "home:home", "h.h");
+$router->get("/", "home:view", "h.h");
 
-$router->get("/cadastro", "cadastro:cadastro", "c.c");
+$router->get("/cadastro", "cadastro:view", "c.c");
 $router->post("/cadastrar", "cadastro:cadastrar");
 
-$router->get("/login", "login:login", "login.login");
+$router->get("/login", "login:view", "login.login");
 $router->post("/login", "login:logar");
 
 $router->get("/deslogar", "login:deslogar");
+
+$router->get("/addContato", "contato:view");
+$router->post("/addContato", "contato:addContato");
+
 
 $router->dispatch();
