@@ -1,0 +1,11 @@
+* {
+    padding:50;
+    margin:0;
+    box-sizing: border-box;
+    font-family: 'Hind Siliguri', 'Arial';
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+}

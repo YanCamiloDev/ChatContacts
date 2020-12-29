@@ -1,0 +1,6 @@
+*/config/*
+
+vendor/
+composer.lock
+composer.phar
+storage/

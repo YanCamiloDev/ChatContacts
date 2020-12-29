@@ -1,0 +1,19 @@
+{
+  "name": "yan/agenda",
+  "description": "Agenda",
+  "authors": [
+    {
+      "name": "Yan Camilo",
+      "email": "yancamilo4@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Source\\": "src"
+    }
+  },
+  "require": {
+    "coffeecode/router": "1.0.*",
+    "cboden/ratchet": "0.4.*"
+  }
+}
