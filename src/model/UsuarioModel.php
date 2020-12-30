@@ -43,6 +43,15 @@ class UsuarioModel extends DbConfig{
     }
   }
 
+  public function listAllContacts($idUser) {
+    /**SELECT nome, telefone 
+FROM tb_contato t_c
+INNER JOIN (
+    SELECT sum(id_contato_usuarios) as aa, count(id_contato) as id_contato FROM tb_contatos_usuarios GROUP BY id_user 
+  order by aa desc
+) t_c_u
+ON t_c_u.id_contato = t_c.id_contato */
+  }
   public function getFotoPerfil($id) {
     try {
       $query = $this->db->prepare("SELECT foto_perfil from tb_usuario WHERE id_user = ?");

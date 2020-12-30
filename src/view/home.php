@@ -1,22 +1,21 @@
-<?php require_once "src/global/links.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="assets/css/home.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" type="text/css" href="assets/css/HomeStyle.css">
   <title>Home</title>
 </head>
 <body>
   <div class="container">
     <header>
-      <div style="display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  height: 100%;" 
-            class="details">
-        <img style="width: 40px; border-radius: 30px; height: 40px;" 
-          id="foto" src="<?php echo "storage/perfil/ ".$foto; ?>"/>
+      <div class="details">
+        <img id="foto" src="<?php echo "storage/perfil/ ".$foto; ?>"/>
         <h1>Home</h1>
       </div>
       <nav>
@@ -35,6 +34,16 @@
       <div class="container-main">
         <?php if (!isset($_SESSION['login'])): ?>
         <h1><a href="login" >Entrar</a></h1>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['login']) && isset($dados)): ?>
+        <div class="contatos">
+          <?php for($i=0; $i <20; $i++): ?>
+          <div class="contato">
+            <img src="assets/imagens/foto.png" alt="" srcset="">
+            <h2>79999371769</h2>
+          </div>
+          <?php endfor; ?>
+        </div>
         <?php endif; ?>
       </div>
     </main>
