@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,8 @@
     href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" type="text/css" href="assets/css/login.css">
+  <link rel="stylesheet" type="text/css" 
+  href="http://localhost/projetos/Agenda/assets/css/login.css">
   <title>Login</title>
 </head>
 <body>

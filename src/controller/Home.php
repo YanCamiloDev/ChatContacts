@@ -17,9 +17,11 @@ class Home
   public function view($data)
   {
     $foto = '';
+    $contatos = array();
     if (isset($_SESSION['login'])) {  
       $usuario = new UsuarioModel();
       $foto = $usuario->getFotoPerfil($_SESSION['login']);
+      $contatos = $usuario->listAllContacts($_SESSION['login']);
     }
     require $this->dir.'home.php';
   }

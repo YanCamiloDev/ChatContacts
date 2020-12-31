@@ -44,14 +44,23 @@ class UsuarioModel extends DbConfig{
   }
 
   public function listAllContacts($idUser) {
-    /**SELECT nome, telefone 
-FROM tb_contato t_c
-INNER JOIN (
-    SELECT sum(id_contato_usuarios) as aa, count(id_contato) as id_contato FROM tb_contatos_usuarios GROUP BY id_user 
-  order by aa desc
-) t_c_u
-ON t_c_u.id_contato = t_c.id_contato */
+    try {
+      $query = $this->db->prepare("SELECT nome, telefone 
+      FROM tb_contato t_c
+      right JOIN (
+          SELECT id_contato from tb_contatos_usuarios where id_user = ?
+      ) t_c_u
+      ON t_c_u.id_contato = t_c.id_contato");
+      $query->bindValue(1, $idUser);
+      $query->execute();
+      if ($query->rowCount() > 0) {
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+      }
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
   }
+
   public function getFotoPerfil($id) {
     try {
       $query = $this->db->prepare("SELECT foto_perfil from tb_usuario WHERE id_user = ?");

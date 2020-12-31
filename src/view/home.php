@@ -3,19 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" type="text/css" href="assets/css/HomeStyle.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/home.css">
   <title>Home</title>
 </head>
 <body>
   <div class="container">
     <header>
       <div class="details">
+        <?php if (isset($_SESSION['login'])): ?>
         <img id="foto" src="<?php echo "storage/perfil/ ".$foto; ?>"/>
+        <?php endif; ?>
         <h1>Home</h1>
       </div>
       <nav>
@@ -29,20 +26,19 @@
         </ul>
       </nav>
     </header>
-    
     <main class="main">
       <div class="container-main">
         <?php if (!isset($_SESSION['login'])): ?>
         <h1><a href="login" >Entrar</a></h1>
         <?php endif; ?>
-        <?php if (isset($_SESSION['login']) && isset($dados)): ?>
+        <?php if (isset($_SESSION['login']) && isset($contatos)): ?>
         <div class="contatos">
-          <?php for($i=0; $i <20; $i++): ?>
+          <?php foreach($contatos as $contato): ?>
           <div class="contato">
             <img src="assets/imagens/foto.png" alt="" srcset="">
-            <h2>79999371769</h2>
+            <h2> <?= $contato['nome']; ?></h2>
           </div>
-          <?php endfor; ?>
+          <?php endforeach; ?>
         </div>
         <?php endif; ?>
       </div>
