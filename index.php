@@ -22,5 +22,7 @@ $router->get("/deslogar", "login:deslogar");
 $router->get("/addContato", "contato:view");
 $router->post("/addContato", "contato:addContato");
 
+$router->get('/chat/{cod}', 'chat:view');
+
 
 $router->dispatch();

@@ -36,7 +36,7 @@
           <?php foreach($contatos as $contato): ?>
           <div class="contato">
             <img src="assets/imagens/foto.png" alt="" srcset="">
-            <h2> <?= $contato['nome']; ?></h2>
+            <a href="chat/<?= $contato['id_contato'] ?>"> <?= $contato['nome']; ?></a>
           </div>
           <?php endforeach; ?>
         </div>

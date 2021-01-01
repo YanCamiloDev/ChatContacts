@@ -130,9 +130,10 @@ header nav ul li a:hover{
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.contato h2{
+.contato a{
   color: #ffffff;
   margin: 0px 20px;
+  text-decoration: none;
 }
 
 .contato img {
