@@ -45,13 +45,12 @@ class UsuarioModel extends DbConfig{
 
   public function listAllContacts($idUser) {
     try {
-      $query = $this->db->prepare("SELECT t_c_u.id_contato, nome, telefone 
-      FROM tb_contato t_c
+      $query = $this->db->prepare("SELECT t_c_u.id_contato, id_user, nome, email 
+      FROM tb_usuario t_c
       right JOIN (
           SELECT id_contato from tb_contatos_usuarios where id_user = ?
       ) t_c_u
-      ON t_c_u.id_contato = t_c.id_contato
-  ");
+      ON t_c_u.id_contato = t_c.id_user");
       $query->bindValue(1, $idUser);
       $query->execute();
       if ($query->rowCount() > 0) {

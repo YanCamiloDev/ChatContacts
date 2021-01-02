@@ -22,18 +22,22 @@
             onclick="conectar(<?= $contato['id_contato'] ?>)" 
             class="contato">
             <img src="assets/imagens/foto.png" alt="" srcset="">
-            <h2><?= $contato['telefone'] ?></h2>
+            <h2><?= $contato['email'] ?></h2>
           </button>        
         <?php endforeach; ?>
       </div>
       <form id="formConversa" class="conversa">
-        <div class="chatConversa">
-          <h4>Conversas</h4>
+        <div id="chatConversa" class="chatConversa">
+          <div class="msg">
+            <h3 id="email">Yan Camilo</h3>
+            <h5 id="texto">Olá</h5>
+          </div>
         </div>
         <input id="mensagemInput" type="text" placeholder="Digite sua mensagem">
       </form>
     </div>
   </div>
+  <script src="http://localhost/projetos/Agenda/assets/js/jquery.js"></script>
   <script src="http://localhost/projetos/Agenda/assets/js/bib/autobahn.js"></script>
   <script src="http://localhost/projetos/Agenda/assets/js/chat.js"></script>
 </body>

@@ -8,7 +8,8 @@
     href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" type="text/css" href="assets/css/cadastro.css">
+  <link rel="stylesheet" type="text/css" 
+  href="http://localhost/projetos/Agenda/assets/css/cadastro.css">
   <title>Cadastro</title>
 </head>
 <body>

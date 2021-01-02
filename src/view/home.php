@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="assets/css/home.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" type="text/css" 
+  href="http://localhost/projetos/Agenda/assets/css/home.css">
   <title>Home</title>
 </head>
 <body>
@@ -35,7 +41,7 @@
         <div class="contatos">
           <?php foreach($contatos as $contato): ?>
           <div class="contato">
-            <img src="assets/imagens/foto.png" alt="" srcset="">
+            <img src="assets/imagens/foto.png" alt="Foto perfil">
             <a href="contato/<?= $contato['id_contato'] ?>"> <?= $contato['nome']; ?></a>
           </div>
           <?php endforeach; ?>

@@ -37,9 +37,9 @@ class Contato {
    * @return void
    */
   public function addContato($data) {
-    echo var_dump($data);
-    $contatoModel = new ContatoModel($data['nome'], $data['telefone']);
-    $result = $contatoModel->saveContact($_SESSION['login']);
+    $contatoModel = new ContatoModel('', $data['email']);
+    $result = $contatoModel->saveContact($_SESSION['login'], $data['email']);
+    echo var_dump($result);
     if ($result) {
       $this->redirect("h.h");
     }

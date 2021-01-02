@@ -8,7 +8,8 @@
     href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" type="text/css" href="assets/css/addcontato.css">
+  <link rel="stylesheet" type="text/css" 
+  href="http://localhost/projetos/Agenda/assets/css/addcontato.css">
   <title>Adicionar Contato</title>
 </head>
 <body>
@@ -23,8 +24,7 @@
         <form action="addContato" method="POST" id="cadForm" enctype="multipart/form-data">
           <h1>Cadastre um novo contato</h1>
           <input style="display: none;" name="arquivo" id="image" type="file" alt="Perfil">
-          <input type="text" id="nome" name="nome" placeholder="Nome">
-          <input type="text" id="telefone" name="telefone" placeholder="Telefone">
+          <input type="text" id="email" name="email" placeholder="Email">
           <input type="submit" value="Salvar Contato" id="btCadastro" name="acaoCadastro">
         </form>
       </aside>

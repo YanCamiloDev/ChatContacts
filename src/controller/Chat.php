@@ -24,6 +24,14 @@ class Chat {
     require $this->dir.'chat.php';
   }
 
+  public function sessao($data) {
+    if (isset($_SESSION['login'])) {
+      echo json_encode(array("login" => $_SESSION['login']));
+    }else {
+      echo json_encode(array("login" => null));
+    }
+  }
+
   public function redirect($endereco) {
     $this->router->redirect($endereco);
   }

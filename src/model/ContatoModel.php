@@ -10,25 +10,24 @@ class ContatoModel extends DbConfig {
 
   public $idContato;
   public $nome;
-  public $telefone;
+  public $email;
   public $idUsuario;
 
-  public function __construct($nome="", $telefone="") {
+  public function __construct($nome="", $email="") {
     parent::__construct();
     $this->idContato = "";
     $this->nome = $nome;
-    $this->telefone = $telefone;
+    $this->email = $email;
     $this->idUsuario = "";
   }
 
-  public function saveContact($idUser) {
+  public function saveContact($idUser, $email) {
     try {
       $this->db->beginTransaction();
       $this->idUsuario = $idUser;
-      $query = $this->db->prepare("INSERT INTO tb_contato (nome, telefone) 
-      VALUES (?, ?) returning id_contato");
-      $query->bindValue(1, $this->nome);
-      $query->bindValue(2, $this->telefone);
+      $query = $this->db->prepare("SELECT id_user as id_contato, nome, email 
+      from tb_usuario where email = ?");
+      $query->bindValue(1, "$email");
       $query->execute();
       if ($query->rowCount() == 1){
         $dado = $query->fetch(PDO::FETCH_ASSOC);
