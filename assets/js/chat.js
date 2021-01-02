@@ -1,5 +1,5 @@
 getLogin();
-var id_user = 1;
+var dadosDoUsuario = 1;
 var itemClicado = '';
 
 // ESCONDENDO ABA DE MENSAGEM
@@ -7,12 +7,18 @@ document.getElementById('formConversa').classList.add('remove');
 
 //WebSocket
 var conn = new WebSocket('ws://localhost:8082');
+
 conn.onopen = function (e) {
-  console.log('Connection established!');
+  var data = {
+    resource: true,
+    id: dadosDoUsuario.id_user,
+  };
+  const ms = JSON.stringify(data);
+  conn.send(ms);
+  console.log('Connection estabelecida!');
 };
 
 conn.onmessage = function (e) {
-  console.log(e.data);
   const { name, msg } = JSON.parse(e.data);
   addMensagem(name, msg);
 };
@@ -22,9 +28,13 @@ document.getElementById('formConversa').addEventListener('submit', (e) => {
   e.preventDefault();
   const mensagem = document.getElementById('mensagemInput').value;
   document.getElementById('mensagemInput').value = '';
-  console.log(id_user);
-  addMensagem('Yan', mensagem, true);
-  var data = { name: 'Yan', id_user, id_destino: itemClicado, msg: mensagem };
+  addMensagem(dadosDoUsuario.nome, mensagem, true);
+  var data = {
+    name: dadosDoUsuario.nome,
+    id_user: dadosDoUsuario.id_user,
+    id_destino: itemClicado,
+    msg: mensagem,
+  };
   const ms = JSON.stringify(data);
   conn.send(ms);
 });
@@ -42,8 +52,9 @@ function getLogin() {
     success: function (result) {
       const dados = JSON.parse(result);
       const { login } = dados;
+      const dadosUser = JSON.parse(login);
       if (login) {
-        id_user = login;
+        dadosDoUsuario = dadosUser;
       }
     },
     error: (err) => {

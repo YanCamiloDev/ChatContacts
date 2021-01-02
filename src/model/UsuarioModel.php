@@ -63,12 +63,12 @@ class UsuarioModel extends DbConfig{
 
   public function getFotoPerfil($id) {
     try {
-      $query = $this->db->prepare("SELECT foto_perfil from tb_usuario WHERE id_user = ?");
+      $query = $this->db->prepare("SELECT id_user, foto_perfil, nome, email from tb_usuario WHERE id_user = ?");
       $query->bindValue(1, $id);
       $query->execute();
       if ($query->rowCount() == 1) {
         $dados = $query->fetch(PDO::FETCH_ASSOC);
-        return $dados['foto_perfil'];
+        return $dados;
       }
     } catch (PDOException $e) {
       echo $e->getMessage();

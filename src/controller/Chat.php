@@ -26,7 +26,9 @@ class Chat {
 
   public function sessao($data) {
     if (isset($_SESSION['login'])) {
-      echo json_encode(array("login" => $_SESSION['login']));
+      $us = new UsuarioModel();
+      $dadosDoUsuario = $us->getFotoPerfil($_SESSION['login']);
+      echo json_encode(array("login" => json_encode($dadosDoUsuario)));
     }else {
       echo json_encode(array("login" => null));
     }

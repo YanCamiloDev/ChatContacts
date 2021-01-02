@@ -4,31 +4,30 @@ namespace Source\socket;
 
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-    
+
 class Chat implements MessageComponentInterface {
+
+    protected $usuarios;
     protected $clients;
 
     public function __construct() {
         $this->clients = new \SplObjectStorage;
+        $this->usuarios = [];
     }
 
     public function onOpen(ConnectionInterface $conn) {
         // Store the new connection to send messages to later
         $this->clients->attach($conn);
-
-        echo "New connection! ({$conn->resourceId})\n";
+        echo "Nova conexão";
     }
 
     public function onMessage(ConnectionInterface $from, $msg) {
-        //$numRecv = count($this->clients) - 1;
-        //echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
-        //    , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
-
-        foreach ($this->clients as $client) {
-            if ($from !== $client) {
-                // The sender is not the receiver, send to each client connected
-                $client->send($msg);
-            }
+        $dado = (array) json_decode($msg);
+        if (isset($dado['resource'])) {
+            //echo "salvo";
+            $this->usuarios[$dado['id']] = $from;
+        }else{
+            $this->usuarios[$dado['id_destino']]->send($msg);
         }
     }
 

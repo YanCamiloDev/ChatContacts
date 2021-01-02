@@ -20,7 +20,8 @@ class Home
     $contatos = array();
     if (isset($_SESSION['login'])) {  
       $usuario = new UsuarioModel();
-      $foto = $usuario->getFotoPerfil($_SESSION['login']);
+      $fotoo = $usuario->getFotoPerfil($_SESSION['login']);
+      $foto = $fotoo['foto_perfil'];
       $contatos = $usuario->listAllContacts($_SESSION['login']);
     }
     require $this->dir.'home.php';
