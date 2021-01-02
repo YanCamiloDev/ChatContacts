@@ -13,7 +13,28 @@
 </head>
 <body>
   <div class="container">
-    <input id="mensagem" type="text" placeholder="Digite sua mensagem: ">
+    <div class="chatContainer">
+      <div id="contatosList" class="contatosList">
+        <?php foreach($contatos as $contato): ?>
+          <button 
+            value="<?= $contato['id_contato'] ?>" 
+            id="<?= $contato['id_contato'] ?>" 
+            onclick="conectar(<?= $contato['id_contato'] ?>)" 
+            class="contato">
+            <img src="assets/imagens/foto.png" alt="" srcset="">
+            <h2><?= $contato['telefone'] ?></h2>
+          </button>        
+        <?php endforeach; ?>
+      </div>
+      <form id="formConversa" class="conversa">
+        <div class="chatConversa">
+          <h4>Conversas</h4>
+        </div>
+        <input id="mensagemInput" type="text" placeholder="Digite sua mensagem">
+      </form>
+    </div>
   </div>
+  <script src="http://localhost/projetos/Agenda/assets/js/bib/autobahn.js"></script>
+  <script src="http://localhost/projetos/Agenda/assets/js/chat.js"></script>
 </body>
 </html>

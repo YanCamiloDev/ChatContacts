@@ -1,6 +1,8 @@
 <?php
 
 namespace Source\controller;
+use Source\model\UsuarioModel;
+session_start();
 
 class Chat {
   
@@ -14,6 +16,11 @@ class Chat {
   }
 
   public function view ($data) {
+    $contatos = array();
+    if (isset($_SESSION['login'])) {  
+      $usuario = new UsuarioModel();
+      $contatos = $usuario->listAllContacts($_SESSION['login']);
+    }
     require $this->dir.'chat.php';
   }
 
