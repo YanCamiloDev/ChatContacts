@@ -1,6 +1,8 @@
 <?php
 
 namespace Source\controller;
+
+use Source\model\MensagemModel;
 use Source\model\UsuarioModel;
 session_start();
 

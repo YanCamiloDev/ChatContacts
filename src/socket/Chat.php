@@ -4,6 +4,7 @@ namespace Source\socket;
 
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+use Source\model\MensagemModel;
 use Source\model\MenssagemModel;
 
 class Chat implements MessageComponentInterface {
@@ -13,26 +14,32 @@ class Chat implements MessageComponentInterface {
 
     public function __construct() {
         $this->clients = new \SplObjectStorage;
-        $this->usuarios = [];
+        foreach ($this->getAllIds() as $id){
+            $this->usuarios[$id['id_user']] = null;
+        }
     }
 
     public function onOpen(ConnectionInterface $conn) {
-        // Store the new connection to send messages to later
         $this->clients->attach($conn);
-        //echo "Nova conexão";
     }
 
     public function onMessage(ConnectionInterface $from, $msg) {
-        $dado = (array) json_decode($msg);
-        if (isset($dado['resource'])) {
-            if (isset($this->usuarios[$dado['id']])) {
-                $this->usuarios[$dado['id']]->send(json_encode(array("sair"=> true)));
+        try {
+            $dado = (array) json_decode($msg);
+            if (isset($dado['resource'])) {
+                if (isset($this->usuarios[$dado['id']])) {
+                    $this->usuarios[$dado['id']]->send(json_encode(array("sair"=> true)));
+                }
+                $this->usuarios[$dado['id']] = $from;
+                echo ', TAMANHO: '.sizeof($this->usuarios);
+            }else{
+                $this->saveMessage($msg);
+                if(isset($this->usuarios[$dado['id_destino']])){
+                    $this->usuarios[$dado['id_destino']]->send($msg);
+                }
             }
-            $this->usuarios[$dado['id']] = $from;
-            echo ', TAMANHO: '.sizeof($this->usuarios);
-        }else{
-            //$this->saveMessage($msg);
-            $this->usuarios[$dado['id_destino']]->send($msg);
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
         }
     }
 
@@ -49,13 +56,16 @@ class Chat implements MessageComponentInterface {
         $conn->close();
     }
 
-    public function getAllMsg() {
-
+    public function getAllIds() {
+        $ms = new MensagemModel();
+        $ids = $ms->listUser();
+        return (array) $ids;
     }
 
     public function saveMessage($msg) {
-        $dado = (array) json_decode($msg);
-        $mensagemModel = new MenssagemModel('', $dado['id_user'], $dado['id_destino'], $dado['msg']);
-        $mensagemModel->save();
+        $data = (array) json_decode($msg);
+        $usuario = new MensagemModel('', $data['id_user'], $data['id_destino'], $data['msg'], '');
+        $re = $usuario->save();
+        echo json_encode(array("response" => $re));
     }
 }

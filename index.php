@@ -26,5 +26,4 @@ $router->get('/chat', 'chat:view');
 
 $router->get('/session', 'chat:sessao');
 
-
 $router->dispatch();

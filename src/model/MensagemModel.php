@@ -5,7 +5,7 @@ use PDO;
 use PDOException;
 use Source\config\DbConfig;
 
-class MenssagemModel extends DbConfig {
+class MensagemModel extends DbConfig {
 
   private $idMensagem;
   private $idRementente;
@@ -19,17 +19,23 @@ class MenssagemModel extends DbConfig {
     $this->idDestinatario = $idDestinatario;
     $this->mensagem = $mensagem;
     $this->dataMsg = $dataMsg;
+    parent::__construct();
+  }
+
+  public function print() {
+    echo "HELOOO";
   }
 
   public function save() {
     try {
-      $query = $this->db->prepare("INSERT INTO tb_mensagem (id_rementente, id_destinatario, mensagem) VALUES (?, ?, ?)");
+      $query = $this->db->prepare("INSERT INTO tb_mensagem(id_remetente, id_destinatario, mensagem) VALUES (?, ?, ?)");
       $query->bindValue(1, $this->idRementente);
       $query->bindValue(2, $this->idDestinatario);
       $query->bindValue(3, $this->mensagem);
       $query->execute();
+      return true;
     } catch (PDOException $e) {
-      echo $e->getMessage();
+      return $e->getMessage();
     }
   }
 
@@ -37,6 +43,22 @@ class MenssagemModel extends DbConfig {
     try {
       $query = $this->db->prepare("SELECT * from tb_mensagem where id_remetente = ?");
       $query->bindValue(1, $id);
+      $query->execute();
+      if ($query->rowCount() > 0) {
+        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $dados;
+      } else {
+        return array();
+      }
+      
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+  }
+  
+  public function listUser() {
+    try {
+      $query = $this->db->prepare("SELECT id_user from tb_usuario");
       $query->execute();
       if ($query->rowCount() > 0) {
         $dados = $query->fetchAll(PDO::FETCH_ASSOC);
