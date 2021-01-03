@@ -4,6 +4,7 @@ namespace Source\socket;
 
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+use Source\model\MenssagemModel;
 
 class Chat implements MessageComponentInterface {
 
@@ -18,15 +19,19 @@ class Chat implements MessageComponentInterface {
     public function onOpen(ConnectionInterface $conn) {
         // Store the new connection to send messages to later
         $this->clients->attach($conn);
-        echo "Nova conexão";
+        //echo "Nova conexão";
     }
 
     public function onMessage(ConnectionInterface $from, $msg) {
         $dado = (array) json_decode($msg);
         if (isset($dado['resource'])) {
-            //echo "salvo";
+            if (isset($this->usuarios[$dado['id']])) {
+                $this->usuarios[$dado['id']]->send(json_encode(array("sair"=> true)));
+            }
             $this->usuarios[$dado['id']] = $from;
+            echo ', TAMANHO: '.sizeof($this->usuarios);
         }else{
+            //$this->saveMessage($msg);
             $this->usuarios[$dado['id_destino']]->send($msg);
         }
     }
@@ -42,5 +47,15 @@ class Chat implements MessageComponentInterface {
         echo "An error has occurred: {$e->getMessage()}\n";
 
         $conn->close();
+    }
+
+    public function getAllMsg() {
+
+    }
+
+    public function saveMessage($msg) {
+        $dado = (array) json_decode($msg);
+        $mensagemModel = new MenssagemModel('', $dado['id_user'], $dado['id_destino'], $dado['msg']);
+        $mensagemModel->save();
     }
 }

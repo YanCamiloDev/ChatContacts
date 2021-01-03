@@ -19,7 +19,10 @@ conn.onopen = function (e) {
 };
 
 conn.onmessage = function (e) {
-  const { name, msg } = JSON.parse(e.data);
+  const { name, msg, sair } = JSON.parse(e.data);
+  if (sair) {
+    window.location = 'http://localhost/projetos/Agenda';
+  }
   addMensagem(name, msg);
 };
 
