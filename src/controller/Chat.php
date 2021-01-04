@@ -26,6 +26,11 @@ class Chat {
     require $this->dir.'chat.php';
   }
 
+  public function listMsgUser($data) {
+    $m = new MensagemModel();
+    $response = $m->listAllMensagens($data['idUser'], $data['idDestino']);
+    echo json_encode($response);
+  }
   public function sessao($data) {
     if (isset($_SESSION['login'])) {
       $us = new UsuarioModel();

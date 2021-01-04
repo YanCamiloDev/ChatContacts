@@ -1,7 +1,5 @@
 @import url('global.css');
 
-/* Css da página */
-
 .container {
   display: flex;
   flex-direction: column;

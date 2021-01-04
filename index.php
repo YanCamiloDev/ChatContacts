@@ -23,7 +23,9 @@ $router->get("/addContato", "contato:view");
 $router->post("/addContato", "contato:addContato");
 
 $router->get('/chat', 'chat:view');
-
 $router->get('/session', 'chat:sessao');
 
+$router->get('/api/mensagens/{idUser}/{idDestino}', "chat:listMsgUser");
+
 $router->dispatch();
+

@@ -42,10 +42,27 @@ document.getElementById('formConversa').addEventListener('submit', (e) => {
   conn.send(ms);
 });
 
-function conectar(id) {
-  //WebSocket
-  itemClicado = id;
-  document.getElementById('formConversa').classList.remove('remove');
+function getMessagesToUser(idUser, idDestino) {
+  $.ajax({
+    url: `http://localhost/projetos/Agenda/api/mensagens/${idUser}/${idDestino}`,
+    type: 'GET',
+    success: function (result) {
+      const js = JSON.parse(result);
+      console.log(js);
+      js.map((element) => {
+        const { nome_remetente, mensagem } = element;
+        if (nome_remetente === dadosDoUsuario.nome) {
+          addMensagem(nome_remetente, mensagem, true);
+        } else {
+          addMensagem(nome_remetente, mensagem);
+        }
+      });
+      //console.log(result);
+    },
+    error: (err) => {
+      console.log(err);
+    },
+  });
 }
 
 function getLogin() {
@@ -80,4 +97,13 @@ function addMensagem(name, msg, me = false) {
   msgg.appendChild(email);
   msgg.appendChild(texto);
   chat.appendChild(msgg);
+}
+
+function conectar(id) {
+  const idUsuario = dadosDoUsuario.id_user;
+  const idDestino = id;
+  getMessagesToUser(idUsuario, idDestino);
+  //WebSocket
+  itemClicado = id;
+  document.getElementById('formConversa').classList.remove('remove');
 }

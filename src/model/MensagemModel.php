@@ -39,10 +39,21 @@ class MensagemModel extends DbConfig {
     }
   }
 
-  public function listAllMensagens($id) {
+  public function listAllMensagens($id, $idDestino) {
     try {
-      $query = $this->db->prepare("SELECT * from tb_mensagem where id_remetente = ?");
+      $query = $this->db->prepare(
+        "SELECT id_mensagem, nome_remetente, mensagem FROM (
+          SELECT id_mensagem, mensagem, nome as nome_remetente, id_remetente
+          from tb_usuario as tb right join (
+            SELECT * from tb_mensagem 
+            where id_remetente = ? and id_destinatario = ? 
+            or id_remetente = ? and id_destinatario = ?
+          ) tt on tt.id_remetente = tb.id_user
+        ) query_final");
       $query->bindValue(1, $id);
+      $query->bindValue(2, $idDestino);
+      $query->bindValue(3, $idDestino);
+      $query->bindValue(4, $id);
       $query->execute();
       if ($query->rowCount() > 0) {
         $dados = $query->fetchAll(PDO::FETCH_ASSOC);
