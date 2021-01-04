@@ -5380,31 +5380,31 @@
         });
       },
     }),
-    S.each({ scrollLeft: 'pageXOffset', scrollTop: 'pageYOffset' }, function (
-      t,
-      i
-    ) {
-      var o = 'pageYOffset' === i;
-      S.fn[t] = function (e) {
-        return $(
-          this,
-          function (e, t, n) {
-            var r;
-            if (
-              (x(e) ? (r = e) : 9 === e.nodeType && (r = e.defaultView),
-              void 0 === n)
-            )
-              return r ? r[i] : e[t];
-            r
-              ? r.scrollTo(o ? r.pageXOffset : n, o ? n : r.pageYOffset)
-              : (e[t] = n);
-          },
-          t,
-          e,
-          arguments.length
-        );
-      };
-    }),
+    S.each(
+      { scrollLeft: 'pageXOffset', scrollTop: 'pageYOffset' },
+      function (t, i) {
+        var o = 'pageYOffset' === i;
+        S.fn[t] = function (e) {
+          return $(
+            this,
+            function (e, t, n) {
+              var r;
+              if (
+                (x(e) ? (r = e) : 9 === e.nodeType && (r = e.defaultView),
+                void 0 === n)
+              )
+                return r ? r[i] : e[t];
+              r
+                ? r.scrollTo(o ? r.pageXOffset : n, o ? n : r.pageYOffset)
+                : (e[t] = n);
+            },
+            t,
+            e,
+            arguments.length
+          );
+        };
+      }
+    ),
     S.each(['top', 'left'], function (e, n) {
       S.cssHooks[n] = $e(y.pixelPosition, function (e, t) {
         if (t)
@@ -5412,40 +5412,40 @@
       });
     }),
     S.each({ Height: 'height', Width: 'width' }, function (a, s) {
-      S.each({ padding: 'inner' + a, content: s, '': 'outer' + a }, function (
-        r,
-        o
-      ) {
-        S.fn[o] = function (e, t) {
-          var n = arguments.length && (r || 'boolean' != typeof e),
-            i = r || (!0 === e || !0 === t ? 'margin' : 'border');
-          return $(
-            this,
-            function (e, t, n) {
-              var r;
-              return x(e)
-                ? 0 === o.indexOf('outer')
-                  ? e['inner' + a]
-                  : e.document.documentElement['client' + a]
-                : 9 === e.nodeType
-                ? ((r = e.documentElement),
-                  Math.max(
-                    e.body['scroll' + a],
-                    r['scroll' + a],
-                    e.body['offset' + a],
-                    r['offset' + a],
-                    r['client' + a]
-                  ))
-                : void 0 === n
-                ? S.css(e, t, i)
-                : S.style(e, t, n, i);
-            },
-            s,
-            n ? e : void 0,
-            n
-          );
-        };
-      });
+      S.each(
+        { padding: 'inner' + a, content: s, '': 'outer' + a },
+        function (r, o) {
+          S.fn[o] = function (e, t) {
+            var n = arguments.length && (r || 'boolean' != typeof e),
+              i = r || (!0 === e || !0 === t ? 'margin' : 'border');
+            return $(
+              this,
+              function (e, t, n) {
+                var r;
+                return x(e)
+                  ? 0 === o.indexOf('outer')
+                    ? e['inner' + a]
+                    : e.document.documentElement['client' + a]
+                  : 9 === e.nodeType
+                  ? ((r = e.documentElement),
+                    Math.max(
+                      e.body['scroll' + a],
+                      r['scroll' + a],
+                      e.body['offset' + a],
+                      r['offset' + a],
+                      r['client' + a]
+                    ))
+                  : void 0 === n
+                  ? S.css(e, t, i)
+                  : S.style(e, t, n, i);
+              },
+              s,
+              n ? e : void 0,
+              n
+            );
+          };
+        }
+      );
     }),
     S.each(
       [

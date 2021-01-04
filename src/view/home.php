@@ -8,7 +8,7 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" type="text/css" 
-  href="http://localhost:80/projetos/Agenda/assets/css/home.css/">
+  href="http://localhost:80/projetos/Agenda/assets/css/home.css">
   <title>Home</title>
 </head>
 <body>
