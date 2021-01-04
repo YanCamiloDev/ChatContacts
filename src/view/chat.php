@@ -28,10 +28,6 @@
       </div>
       <form id="formConversa" class="conversa">
         <div id="chatConversa" class="chatConversa">
-          <div class="msg">
-            <h3 id="email">Yan Camilo</h3>
-            <h5 id="texto">Olá</h5>
-          </div>
         </div>
         <input id="mensagemInput" type="text" placeholder="Digite sua mensagem">
       </form>

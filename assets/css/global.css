@@ -3,7 +3,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Hind Siliguri', 'Arial';
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .aviso {

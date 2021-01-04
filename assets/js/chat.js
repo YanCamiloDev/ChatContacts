@@ -43,6 +43,7 @@ document.getElementById('formConversa').addEventListener('submit', (e) => {
 });
 
 function getMessagesToUser(idUser, idDestino) {
+  clearMsg();
   $.ajax({
     url: `http://localhost/projetos/Agenda/api/mensagens/${idUser}/${idDestino}`,
     type: 'GET',
@@ -83,10 +84,19 @@ function getLogin() {
   });
 }
 
+// LIMPANDO AS MENSAGENS
+function clearMsg() {
+  var elemento = document.getElementById('chatConversa');
+  while (elemento.firstChild) {
+    elemento.removeChild(elemento.firstChild);
+  }
+}
+
 function addMensagem(name, msg, me = false) {
   const chat = document.getElementById('chatConversa');
   const msgg = document.createElement('div');
   msgg.classList.add('msg');
+  msgg.id = 'msg';
   if (me == true) {
     msgg.classList.add('me');
   }

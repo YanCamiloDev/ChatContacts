@@ -8,23 +8,51 @@
 .chatContainer {
   display: flex;
   width: 100%;
-  height: 100%;
 }
+
 .contatosList {
   flex: 1;
-  background-color: yellow;
+  background-color: rgb(18, 21, 61);
   padding: 3px;
+  width: 40%;
+  position: fixed;
+  overflow-x: hidden;
+  top: 0;
+  left: 0;
+  bottom: 0;
 }
+
 .contatosList .contato {
   width: 100%;
   display: flex;
   align-items: center;
   margin-bottom: 5px;
-  padding: 3px;
+  border: none;
+  padding: 10px;
+  outline: 0;
+  background-color: transparent;
+  transition: all 0.1s ease-in-out;
+}
+
+.contatosList .contato:hover {
+  border: solid 1px #230e53;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.contatosList .contato:active, .contato:focus {
+  border: solid 1px #230e53;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .contatosList .contato h2{
+  height: 100%;
+  display: block;
   margin-left: 10px;
+  word-wrap: break-word;
+  text-align: left;
+  color: #ffffff;
+  overflow: -moz-hidden-unscrollable;
+  padding: 3px;
 }
 
 .contatosList .contato img {
@@ -34,31 +62,34 @@
 }
 
 .conversa {
-  flex: 2;
-  background-color:blue;
   transition: all 1s ease-in-out;
+  width: 60%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
+
 .conversa .chatConversa {
   width: 100%;
-  height: calc(100% - 80px);
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
 }
+
 .conversa #mensagemInput {
-  width: 100%;
+  width: 60%;
   height: 80px;
   outline: 0;
   border: solid 1px #9fb199;
-}
-
-#mensagemInput {
-  width: 100%;
-  height: 50px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
   padding: 0px 10px;
   font-size: 20px;
   font-family: 'Hind Siliguri';
 }
+
 .remove {
   display: none !important;
 }
@@ -70,7 +101,9 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 10px 20px;
 }
 
-
+.conversa .chatConversa .msg:last-child {
+  margin-bottom: 82px;
+}
