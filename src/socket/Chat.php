@@ -14,9 +14,7 @@ class Chat implements MessageComponentInterface {
 
     public function __construct() {
         $this->clients = new \SplObjectStorage;
-        foreach ($this->getAllIds() as $id){
-            $this->usuarios[$id['id_user']] = null;
-        }
+        $this->usuarios = [];
     }
 
     public function onOpen(ConnectionInterface $conn) {
@@ -26,6 +24,7 @@ class Chat implements MessageComponentInterface {
     public function onMessage(ConnectionInterface $from, $msg) {
         try {
             $dado = (array) json_decode($msg);
+            // VERIFICANDO SE É UMA NOVA CONEXÃO
             if (isset($dado['resource'])) {
                 if (isset($this->usuarios[$dado['id']])) {
                     $this->usuarios[$dado['id']]->send(json_encode(array("sair"=> true)));
@@ -54,12 +53,6 @@ class Chat implements MessageComponentInterface {
         echo "An error has occurred: {$e->getMessage()}\n";
 
         $conn->close();
-    }
-
-    public function getAllIds() {
-        $ms = new MensagemModel();
-        $ids = $ms->listUser();
-        return (array) $ids;
     }
 
     public function saveMessage($msg) {

@@ -40,7 +40,7 @@
         <div class="contatos">
           <?php foreach($contatos as $contato): ?>
           <div class="contato">
-            <img src="assets/imagens/foto.png" alt="Foto perfil">
+            <img src="storage/perfil/ <?= $contato['foto_perfil'] ?>" alt="Foto perfil">
             <a href="contato/<?= $contato['id_contato'] ?>"> <?= $contato['nome']; ?></a>
           </div>
           <?php endforeach; ?>

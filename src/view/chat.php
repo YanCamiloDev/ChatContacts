@@ -15,13 +15,21 @@
   <div class="container">
     <div class="chatContainer">
       <div id="contatosList" class="contatosList">
+        <header>
+          <div id="info" class="info">
+            <img style="display: none;" src="" alt="" srcset="">
+          </div>
+          <div class="search">
+            <input id="pesquisaInput" type="text" placeholder="pesquisar">
+          </div>
+        </header>
         <?php foreach($contatos as $contato): ?>
           <button 
             value="<?= $contato['id_contato'] ?>" 
             id="<?= $contato['id_contato'] ?>" 
             onclick="conectar(<?= $contato['id_contato'] ?>)" 
             class="contato">
-            <img src="assets/imagens/foto.png" alt="" srcset="">
+            <img src="storage/perfil/ <?= $contato['foto_perfil']?>" alt="" srcset="">
             <h2><?= $contato['email'] ?></h2>
           </button>        
         <?php endforeach; ?>

@@ -45,7 +45,7 @@ class UsuarioModel extends DbConfig{
 
   public function listAllContacts($idUser) {
     try {
-      $query = $this->db->prepare("SELECT t_c_u.id_contato, id_user, nome, email 
+      $query = $this->db->prepare("SELECT t_c_u.id_contato, id_user, nome, email, foto_perfil 
       FROM tb_usuario t_c
       right JOIN (
           SELECT id_contato from tb_contatos_usuarios where id_user = ?

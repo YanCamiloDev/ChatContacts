@@ -1,5 +1,6 @@
 @import url('global.css');
 
+
 .container {
   width: 100vw;
   height: 100vh;
@@ -13,13 +14,48 @@
 .contatosList {
   flex: 1;
   background-color: rgb(18, 21, 61);
-  padding: 3px;
-  width: 40%;
+  width: 35%;
   position: fixed;
   overflow-x: hidden;
   top: 0;
   left: 0;
   bottom: 0;
+}
+
+.contatosList header{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+  background-color: #3c3057;
+}
+.contatosList header .info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.contatosList header .search {
+  display: flex;
+  justify-content: center;
+}
+.contatosList header #pesquisaInput{
+  width: 96%;
+  height: 100%;
+  border: solid 1px #9fb199;
+  padding: 0px 10px;
+  border-radius: 30px;
+  font-size: 18px;
+  outline: 0;
+  font-family: 'Hind Siliguri';
+  margin-bottom: 10px;
+}
+
+
+#info img {
+  width: 60px;
+  height: 60px;
+  margin: 15px 10px;
+  border-radius: 30px;
 }
 
 .contatosList .contato {
@@ -55,15 +91,15 @@
   padding: 3px;
 }
 
-.contatosList .contato img {
-  width: 50px;
-  height: 50px;
+.contatosList .contato img, #info img {
+  width: 60px;
+  height: 60px;
   border-radius: 30px;
 }
 
 .conversa {
   transition: all 1s ease-in-out;
-  width: 60%;
+  width: 65%;
   position: absolute;
   top: 0;
   right: 0;
@@ -78,8 +114,8 @@
 }
 
 .conversa #mensagemInput {
-  width: 60%;
-  height: 80px;
+  width: 65%;
+  height: 60px;
   outline: 0;
   border: solid 1px #9fb199;
   position: fixed;

@@ -8,6 +8,7 @@ document.getElementById('formConversa').classList.add('remove');
 //WebSocket
 var conn = new WebSocket('ws://localhost:8082');
 
+// CONEXÃO REALIZADA
 conn.onopen = function (e) {
   var data = {
     resource: true,
@@ -18,6 +19,7 @@ conn.onopen = function (e) {
   console.log('Connection estabelecida!');
 };
 
+//Nova menssagem
 conn.onmessage = function (e) {
   const { name, msg, sair } = JSON.parse(e.data);
   if (sair) {
@@ -42,6 +44,7 @@ document.getElementById('formConversa').addEventListener('submit', (e) => {
   conn.send(ms);
 });
 
+// PEGANDO MENSAGENS TROCADAS COM UM CONTATO
 function getMessagesToUser(idUser, idDestino) {
   clearMsg();
   $.ajax({
@@ -58,7 +61,6 @@ function getMessagesToUser(idUser, idDestino) {
           addMensagem(nome_remetente, mensagem);
         }
       });
-      //console.log(result);
     },
     error: (err) => {
       console.log(err);
@@ -66,6 +68,7 @@ function getMessagesToUser(idUser, idDestino) {
   });
 }
 
+// DADOS DO USUÁRIO LOGADO
 function getLogin() {
   $.ajax({
     url: 'http://localhost/projetos/Agenda/session',
@@ -74,6 +77,11 @@ function getLogin() {
       const dados = JSON.parse(result);
       const { login } = dados;
       const dadosUser = JSON.parse(login);
+      var elemento = document.getElementById('info');
+      var e = document.createElement('img');
+      e.src = `http://localhost/projetos/Agenda/storage/perfil/ ${dadosUser.foto_perfil}`;
+      elemento.appendChild(e);
+      console.log(dadosUser);
       if (login) {
         dadosDoUsuario = dadosUser;
       }
@@ -86,9 +94,14 @@ function getLogin() {
 
 // LIMPANDO AS MENSAGENS
 function clearMsg() {
-  var elemento = document.getElementById('chatConversa');
-  while (elemento.firstChild) {
-    elemento.removeChild(elemento.firstChild);
+  try {
+    var elemento = document.getElementById('chatConversa');
+    elemento.scrollHeight = elemento.scrollTop;
+    while (elemento.firstChild) {
+      elemento.removeChild(elemento.firstChild);
+    }
+  } catch (error) {
+    console.log('erro: ', error);
   }
 }
 

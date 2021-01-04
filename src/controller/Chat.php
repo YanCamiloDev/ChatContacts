@@ -31,6 +31,7 @@ class Chat {
     $response = $m->listAllMensagens($data['idUser'], $data['idDestino']);
     echo json_encode($response);
   }
+  
   public function sessao($data) {
     if (isset($_SESSION['login'])) {
       $us = new UsuarioModel();
