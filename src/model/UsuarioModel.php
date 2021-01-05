@@ -45,13 +45,22 @@ class UsuarioModel extends DbConfig{
 
   public function listAllContacts($idUser) {
     try {
-      $query = $this->db->prepare("SELECT t_c_u.id_contato, id_user, nome, email, foto_perfil 
-      FROM tb_usuario t_c
-      right JOIN (
-          SELECT id_contato from tb_contatos_usuarios where id_user = ?
-      ) t_c_u
-      ON t_c_u.id_contato = t_c.id_user");
+      $query = $this->db->prepare("SELECT id_user as id_contato, nome, email, foto_perfil, (
+        select mensagem from tb_mensagem inner join (
+        SELECT id_remetente, id_destinatario, MAX(data_msg) as data_m from tb_mensagem 
+        group by id_remetente, id_destinatario having 
+        tb_mensagem.id_remetente = ? and tb_mensagem.id_destinatario = id_user or
+        tb_mensagem.id_remetente = id_user and tb_mensagem.id_destinatario = ?
+        order by data_m desc limit 1) b on b.data_m = tb_mensagem.data_msg
+        ) ultima_mensagem
+        FROM tb_usuario t_c
+        right JOIN (
+                SELECT id_contato, id_user as my_id from tb_contatos_usuarios where id_user = ?
+        ) t_c_u
+        ON t_c_u.id_contato = t_c.id_user");
       $query->bindValue(1, $idUser);
+      $query->bindValue(2, $idUser);
+      $query->bindValue(3, $idUser);
       $query->execute();
       if ($query->rowCount() > 0) {
         return $query->fetchAll(PDO::FETCH_ASSOC);

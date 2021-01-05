@@ -113,11 +113,9 @@ function addMensagem(name, msg, me = false) {
   if (me == true) {
     msgg.classList.add('me');
   }
-  const email = document.createElement('h3');
-  email.innerHTML = name;
   const texto = document.createElement('h5');
   texto.innerHTML = msg;
-  msgg.appendChild(email);
+  texto.classList.add('texto');
   msgg.appendChild(texto);
   chat.appendChild(msgg);
 }

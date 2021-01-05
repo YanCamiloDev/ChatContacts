@@ -4,6 +4,7 @@
 .container {
   width: 100vw;
   height: 100vh;
+  background-color: #101D24;
 }
 
 .chatContainer {
@@ -13,8 +14,9 @@
 
 .contatosList {
   flex: 1;
-  background-color: rgb(18, 21, 61);
-  width: 35%;
+  background-color: #101D24;
+  width: 30%;
+  border-right: 1px solid #05041360;
   position: fixed;
   overflow-x: hidden;
   top: 0;
@@ -26,34 +28,48 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  height: 106px;
   width: 100%; 
   background-color: #3c3057;
 }
+
 .contatosList header .info {
   display: flex;
   justify-content: space-between;
+  background-color: #191622;
   width: 100%;
+  overflow: hidden;
+  height: 60px;
 }
+
 .contatosList header .search {
   display: flex;
   justify-content: center;
+  background-color: #191622;
+  align-items: center;
+  padding: 10px;
 }
+
+.contatosList header .search img{
+  width: 14px;
+  height: 14px;
+  margin: 0px 3px;
+}
+
 .contatosList header #pesquisaInput{
   width: 96%;
-  height: 100%;
-  border: solid 1px #9fb199;
+  height: 25px;
+  border: none;
   padding: 0px 10px;
   border-radius: 30px;
-  font-size: 18px;
+  font-size: 14px;
   outline: 0;
   font-family: 'Hind Siliguri';
-  margin-bottom: 10px;
 }
 
-
 #info img {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   margin: 15px 10px;
   border-radius: 30px;
 }
@@ -64,42 +80,60 @@
   align-items: center;
   margin-bottom: 5px;
   border: none;
-  padding: 10px;
+  height: 70px;
+  overflow: hidden;
+  padding: 15px;
   outline: 0;
   background-color: transparent;
   transition: all 0.1s ease-in-out;
 }
 
+.contatosList .contato .nomeAndLastMsg{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  margin-left: 10px;
+  width: 100%;
+  align-items: flex-start;
+}
+.contatosList .contato .separator{
+  height: 1px;
+  width: 100%;
+  background-color: #42225F;
+}
+
+.contatosList .contato .nomeAndLastMsg h2, h4{
+  height: 100%;
+  display: block;
+  word-wrap: break-word;
+  text-align: left;
+  color: #ffffff;
+}
+
+.contatosList .contato .nomeAndLastMsg h4{
+  font: 400 12px Hind Siliguri;
+}
+.contatosList .contato .nomeAndLastMsg h2 {
+  font: 500 20px Hind Siliguri;
+}
+
+.contatosList .contato img {
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+}
+
 .contatosList .contato:hover {
-  border: solid 1px #230e53;
   background-color: rgba(255, 255, 255, 0.05);
 }
 
 .contatosList .contato:active, .contato:focus {
-  border: solid 1px #230e53;
   background-color: rgba(255, 255, 255, 0.05);
-}
-
-.contatosList .contato h2{
-  height: 100%;
-  display: block;
-  margin-left: 10px;
-  word-wrap: break-word;
-  text-align: left;
-  color: #ffffff;
-  overflow: -moz-hidden-unscrollable;
-  padding: 3px;
-}
-
-.contatosList .contato img, #info img {
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
 }
 
 .conversa {
   transition: all 1s ease-in-out;
-  width: 65%;
+  width: 70%;
   position: absolute;
   top: 0;
   right: 0;
@@ -108,20 +142,23 @@
 
 .conversa .chatConversa {
   width: 100%;
-  background-color: #ffffff;
+  background-color: #101D24;
   display: flex;
   flex-direction: column;
 }
 
 .conversa #mensagemInput {
-  width: 65%;
+  width: 70%;
   height: 60px;
   outline: 0;
-  border: solid 1px #9fb199;
+  border: none;
   position: fixed;
   bottom: 0;
+  border-top: 0.5px solid #5B5C5D;
   right: 0;
+  color: #9fb199;
   padding: 0px 10px;
+  background-color: #101D24;
   font-size: 20px;
   font-family: 'Hind Siliguri';
 }
@@ -129,8 +166,14 @@
 .remove {
   display: none !important;
 }
+
 .me {
   align-items: flex-end;
+}
+
+.me .texto{
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 0px !important
 }
 
 .conversa .chatConversa .msg {
@@ -138,6 +181,17 @@
   display: flex;
   flex-direction: column;
   padding: 10px 20px;
+  color: #9fb199;
+}
+
+.conversa .chatConversa .msg .texto {
+  background-color: #0b0c1a;
+  padding: 10px;
+  max-width: 300px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
 }
 
 .conversa .chatConversa .msg:last-child {

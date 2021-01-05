@@ -17,10 +17,10 @@
       <div id="contatosList" class="contatosList">
         <header>
           <div id="info" class="info">
-            <img style="display: none;" src="" alt="" srcset="">
           </div>
           <div class="search">
-            <input id="pesquisaInput" type="text" placeholder="pesquisar">
+            <img src="assets/imagens/search.png" alt="">
+            <input id="pesquisaInput" type="text" placeholder="Pesquisar Contato">
           </div>
         </header>
         <?php foreach($contatos as $contato): ?>
@@ -30,7 +30,10 @@
             onclick="conectar(<?= $contato['id_contato'] ?>)" 
             class="contato">
             <img src="storage/perfil/ <?= $contato['foto_perfil']?>" alt="" srcset="">
-            <h2><?= $contato['email'] ?></h2>
+            <div class="nomeAndLastMsg">
+              <h2><?= $contato['nome'] ?></h2>
+              <h4><?= $contato['ultima_mensagem'] ?></h4>
+            </div>
           </button>        
         <?php endforeach; ?>
       </div>
