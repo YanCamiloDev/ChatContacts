@@ -19,16 +19,17 @@ conn.onopen = function (e) {
   console.log('Connection estabelecida!');
 };
 
-//Nova menssagem
+//Nova menssagem RECEBIDA
 conn.onmessage = function (e) {
   const { name, msg, sair } = JSON.parse(e.data);
   if (sair) {
     window.location = 'http://localhost/projetos/Agenda';
   }
   addMensagem(name, msg);
+  addUltimaMsgAndHorario(msg);
 };
 
-// ENVIANDO UMA MENSAGEM
+// ENVIANDO UMA NOVA MENSAGEM
 document.getElementById('formConversa').addEventListener('submit', (e) => {
   e.preventDefault();
   const mensagem = document.getElementById('mensagemInput').value;
@@ -42,6 +43,7 @@ document.getElementById('formConversa').addEventListener('submit', (e) => {
   };
   const ms = JSON.stringify(data);
   conn.send(ms);
+  addUltimaMsgAndHorario(mensagem);
 });
 
 // PEGANDO MENSAGENS TROCADAS COM UM CONTATO
@@ -52,13 +54,12 @@ function getMessagesToUser(idUser, idDestino) {
     type: 'GET',
     success: function (result) {
       const js = JSON.parse(result);
-      console.log(js);
       js.map((element) => {
-        const { nome_remetente, mensagem } = element;
+        const { id_mensagem, nome_remetente, mensagem } = element;
         if (nome_remetente === dadosDoUsuario.nome) {
-          addMensagem(nome_remetente, mensagem, true);
+          addMensagem(nome_remetente, mensagem, true, id_mensagem);
         } else {
-          addMensagem(nome_remetente, mensagem);
+          addMensagem(nome_remetente, mensagem, false, id_mensagem);
         }
       });
     },
@@ -105,11 +106,38 @@ function clearMsg() {
   }
 }
 
-function addMensagem(name, msg, me = false) {
+// LEVANDO SCROLL ATÉ A MENSSAGEM MAIS RECENTE
+function scroll() {
+  var element = document.getElementById('chatConversa');
+  element.scrollIntoView();
+  element.scrollIntoView(false);
+  element.scrollIntoView({ block: 'end' });
+  element.scrollIntoView({ block: 'end', behavior: 'smooth' });
+}
+
+// ATUALIZANDO ÚLTIMA MENSAGEM ENVIADA
+function addUltimaMsgAndHorario(msg) {
+  const element = document.getElementById(itemClicado);
+  const v = element.getElementsByClassName('u_m')[0];
+  v.innerHTML = msg;
+  const element2 = document.getElementById(itemClicado);
+  const v2 = element2.getElementsByClassName('u_h')[0];
+  const data = `${new Date().getHours()}:${new Date().getMinutes()}`;
+  v2.innerHTML = data;
+  v.classList.add('color');
+  v2.classList.add('color');
+  setTimeout(() => {
+    v2.classList.remove('color');
+    v.classList.remove('color');
+  }, 5000);
+}
+
+// ADICIONANDO NOVA MENSAGEM NA TELA
+function addMensagem(name, msg, me = false, id = Math.random()) {
   const chat = document.getElementById('chatConversa');
   const msgg = document.createElement('div');
   msgg.classList.add('msg');
-  msgg.id = 'msg';
+  msgg.id = id;
   if (me == true) {
     msgg.classList.add('me');
   }
@@ -118,8 +146,10 @@ function addMensagem(name, msg, me = false) {
   texto.classList.add('texto');
   msgg.appendChild(texto);
   chat.appendChild(msgg);
+  scroll();
 }
 
+// CONECTANDO CONTATO
 function conectar(id) {
   const idUsuario = dadosDoUsuario.id_user;
   const idDestino = id;

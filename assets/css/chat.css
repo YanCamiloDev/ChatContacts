@@ -96,9 +96,11 @@
   width: 100%;
   align-items: flex-start;
 }
+
 .contatosList .contato span{
   color: #ffffff;
   margin-top: 10px;
+  transition: all 1s ease-out;
 }
 
 .contatosList .contato .separator{
@@ -117,6 +119,7 @@
   word-wrap: break-word;
   text-align: left;
   color: #ffffff;
+  transition: all 1s ease-out;
 }
 
 .contatosList .contato .nomeAndLastMsg h4{
@@ -205,4 +208,9 @@
 
 .conversa .chatConversa .msg:last-child {
   margin-bottom: 82px;
+}
+
+.color {
+  color: #86b140 !important;
+  transition: all 1s ease-out !important;
 }

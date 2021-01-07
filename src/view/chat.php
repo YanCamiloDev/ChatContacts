@@ -20,7 +20,7 @@
           </div>
           <div class="search">
             <img src="assets/imagens/search.png" alt="">
-            <input id="pesquisaInput" type="text" placeholder="Pesquisar Contato">
+            <input autocomplete="off" id="pesquisaInput" type="text" placeholder="Pesquisar Contato">
           </div>
         </header>
         <?php foreach($contatos as $contato): ?>
@@ -33,8 +33,9 @@
             <div class="nomeAndLastMsg">
               <div>
                 <h2><?= $contato['nome'] ?></h2>
-                <h4><?= $contato['ultima_mensagem'] ?></h4></div>
-              <span>
+                <h4 class="u_m" id="<?= $contato['id_contato'] ?>"><?= $contato['ultima_mensagem'] ?></h4>
+              </div>
+              <span class="u_h">
                 <?= date('H:i', strtotime($contato['data'])) ?>
               </span>
             </div>
@@ -44,7 +45,7 @@
       <form id="formConversa" class="conversa">
         <div id="chatConversa" class="chatConversa">
         </div>
-        <input id="mensagemInput" type="text" placeholder="Digite sua mensagem">
+        <input autocomplete="off" id="mensagemInput" type="text" placeholder="Digite sua mensagem">
       </form>
     </div>
   </div>
