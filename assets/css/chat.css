@@ -90,19 +90,28 @@
 
 .contatosList .contato .nomeAndLastMsg{
   display: flex;
-  flex-direction: column;
   padding: 5px;
   margin-left: 10px;
+  justify-content: space-between;
   width: 100%;
   align-items: flex-start;
 }
+.contatosList .contato span{
+  color: #ffffff;
+  margin-top: 10px;
+}
+
 .contatosList .contato .separator{
   height: 1px;
   width: 100%;
   background-color: #42225F;
 }
-
-.contatosList .contato .nomeAndLastMsg h2, h4{
+.contatosList .contato .nomeAndLastMsg div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.contatosList .contato .nomeAndLastMsg div h2, h4{
   height: 100%;
   display: block;
   word-wrap: break-word;

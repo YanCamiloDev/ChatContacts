@@ -31,8 +31,12 @@
             class="contato">
             <img src="storage/perfil/ <?= $contato['foto_perfil']?>" alt="" srcset="">
             <div class="nomeAndLastMsg">
-              <h2><?= $contato['nome'] ?></h2>
-              <h4><?= $contato['ultima_mensagem'] ?></h4>
+              <div>
+                <h2><?= $contato['nome'] ?></h2>
+                <h4><?= $contato['ultima_mensagem'] ?></h4></div>
+              <span>
+                <?= date('H:i', strtotime($contato['data'])) ?>
+              </span>
             </div>
           </button>        
         <?php endforeach; ?>

@@ -16,13 +16,8 @@
   <div class="container">
     <div class="container-main">
       <aside>
-        <label class="rounded" for="image">
-          <img id="imm" src="assets/imagens/foto.png" alt="Foto de perfil">
-        </label>
-      </aside>
-      <aside>
         <form action="addContato" method="POST" id="cadForm" enctype="multipart/form-data">
-          <h1>Cadastre um novo contato</h1>
+          <h1>Adicione um novo contato</h1>
           <input style="display: none;" name="arquivo" id="image" type="file" alt="Perfil">
           <input type="text" id="email" name="email" placeholder="Email">
           <input type="submit" value="Salvar Contato" id="btCadastro" name="acaoCadastro">

@@ -22,7 +22,6 @@
       </div>
       <nav>
         <ul>
-          <li><a href="login">Contatos</a></li>
           <li><a href="addContato">Adicionar Contato</a></li>
           <li><a href="chat">Chat</a></li>
           <?php if (isset($_SESSION['login'])): ?>
