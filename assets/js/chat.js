@@ -21,12 +21,13 @@ conn.onopen = function (e) {
 
 //Nova menssagem RECEBIDA
 conn.onmessage = function (e) {
-  const { name, msg, sair } = JSON.parse(e.data);
+  const { id_user, name, msg, sair } = JSON.parse(e.data);
   if (sair) {
     window.location = 'http://localhost/projetos/Agenda';
   }
-  addMensagem(name, msg);
+  itemClicado = id_user;
   addUltimaMsgAndHorario(msg);
+  addMensagem(name, msg);
 };
 
 // ENVIANDO UMA NOVA MENSAGEM
@@ -43,7 +44,7 @@ document.getElementById('formConversa').addEventListener('submit', (e) => {
   };
   const ms = JSON.stringify(data);
   conn.send(ms);
-  addUltimaMsgAndHorario(mensagem);
+  addUltimaMsgAndHorario(mensagem, false);
 });
 
 // PEGANDO MENSAGENS TROCADAS COM UM CONTATO
@@ -116,7 +117,7 @@ function scroll() {
 }
 
 // ATUALIZANDO ÚLTIMA MENSAGEM ENVIADA
-function addUltimaMsgAndHorario(msg) {
+function addUltimaMsgAndHorario(msg, verificador = true) {
   const element = document.getElementById(itemClicado);
   const v = element.getElementsByClassName('u_m')[0];
   v.innerHTML = msg;
@@ -124,12 +125,14 @@ function addUltimaMsgAndHorario(msg) {
   const v2 = element2.getElementsByClassName('u_h')[0];
   const data = `${new Date().getHours()}:${new Date().getMinutes()}`;
   v2.innerHTML = data;
-  v.classList.add('color');
-  v2.classList.add('color');
-  setTimeout(() => {
-    v2.classList.remove('color');
-    v.classList.remove('color');
-  }, 5000);
+  if (verificador) {
+    v.classList.add('color');
+    v2.classList.add('color');
+    setTimeout(() => {
+      v2.classList.remove('color');
+      v.classList.remove('color');
+    }, 5000);
+  }
 }
 
 // ADICIONANDO NOVA MENSAGEM NA TELA
