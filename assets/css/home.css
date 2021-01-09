@@ -55,15 +55,32 @@ header nav ul {
 
 header nav ul li a {
   margin-right: 30px;
+  padding: 16px 0px;
+  display: flex;
+  position: relative;
   cursor: pointer;
   text-decoration: none;
   color: #ffffff;
   transition: all 0.2s ease-in-out;
 }
 
-header nav ul li a:hover{
-  color: gold;
+header nav ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  display: block;
+  height: 1px;
+  width: 0;
+  background: #ffffff;
+  will-change: contents;
+  -webkit-transition: .1s ease;
+  margin-top: 10px;
+  transition: .1s ease;
 }
+header nav ul li a:hover:after {
+  width: 100%;
+}
+ 
 .main{
   height: 100vh;
 }
