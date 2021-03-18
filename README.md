@@ -3,7 +3,7 @@
 <img height="490px" width="790px" src="https://user-images.githubusercontent.com/59901791/104061965-540f3280-51d8-11eb-944c-df8b8f5652e2.gif" />
 
 ## Stack:
-. PHP
+- PHP
 - JAVASCRIPT
 - HTML
 - CSS
